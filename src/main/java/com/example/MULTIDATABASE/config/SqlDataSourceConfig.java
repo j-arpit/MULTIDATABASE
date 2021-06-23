@@ -3,7 +3,8 @@ package com.example.MULTIDATABASE.config;
 import javax.sql.DataSource;
 
 import com.example.MULTIDATABASE.model.City;
-import org.apache.commons.dbcp2.BasicDataSource;
+import com.zaxxer.hikari.HikariDataSource;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -29,7 +30,7 @@ public class SqlDataSourceConfig {
     @ConfigurationProperties("spring.second-datasource.configuration")
     public DataSource sqlDataSource() {
         return sqlDataSourceProperties().initializeDataSourceBuilder()
-            .type(BasicDataSource.class).build();
+            .type(HikariDataSource.class).build();
     }
 
     @Bean(name = "sqlEntityManagerFactory")
